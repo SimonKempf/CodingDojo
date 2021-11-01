@@ -44,7 +44,7 @@ class BasketTest {
     void getPrice_GivenThreeDistinctBooksOutOfFive_ThenReturnsThreeTimesTheBasePriceWith10PercentDiscountPlusForNonDistinctBookTheBasePrice() {
         Basket sut = new Basket();
         double current = sut.getPrice(new Book("hp1"), new Book("hp2"), new Book("hp2"), new Book("hp3"), new Book("hp3"));
-        assertEquals(Basket.BASE_PRICE * 3 * .90 + Basket.BASE_PRICE + Basket.BASE_PRICE, current);
+        assertEquals(Basket.BASE_PRICE * 3 * .90 + Basket.BASE_PRICE * 2 * 0.95, current);
     }
 
     @org.junit.jupiter.api.Test
@@ -59,6 +59,13 @@ class BasketTest {
         Basket sut = new Basket();
         double current = sut.getPrice(new Book("hp1"), new Book("hp2"), new Book("hp3"), new Book("hp4"), new Book("hp5"), new Book("hp5"));
         assertEquals(Basket.BASE_PRICE * 5 * .75 + Basket.BASE_PRICE, current);
+    }
+
+    @org.junit.jupiter.api.Test
+    void getPrice_GivenFiveDistinctBooksOutOf7_ThenReturnsFiveTimesTheBasePriceWith20PercentDiscountPlusForNonDistinctBookTheBasePrice() {
+        Basket sut = new Basket();
+        double current = sut.getPrice(new Book("hp1"), new Book("hp2"), new Book("hp3"), new Book("hp4"), new Book("hp5"), new Book("hp1"), new Book("hp2"));
+        assertEquals(Basket.BASE_PRICE * 5 * .75 + Basket.BASE_PRICE * 2 * 0.95, current);
     }
 
 }
