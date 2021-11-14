@@ -50,6 +50,7 @@ public class Basket {
     private List<Set<String>> getDistinctListOfBooks(Map<String, Integer> bookNumbersByTitle) {
         List<Set<String>> distinctBookSets = new ArrayList<Set<String>>();
         int maxValueInMap = Collections.max(bookNumbersByTitle.values());
+        // TODO clean
         for(int i = 0; i < maxValueInMap; i++ ) {
             Set<String> distinctBooks = new HashSet<>();
             for(String key : bookNumbersByTitle.keySet()){
@@ -82,7 +83,6 @@ public class Basket {
         for (Set<String> distinctBook : distinctBooks) {
             price += computePriceWithDiscount(distinctBook.size());
         }
-        // TODO do with stream().map
         return price;
     }
 
